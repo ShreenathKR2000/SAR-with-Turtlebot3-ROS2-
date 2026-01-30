@@ -451,7 +451,7 @@ For issues or questions:
 ## Changelog
 
 v 1.0.1
-updated some files, 
+updated some files, Needs checking if it runs good.
 
 v 1.0.0 - Initial Release
 
