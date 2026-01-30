@@ -450,5 +450,10 @@ For issues or questions:
 
 ## Changelog
 
+v 1.0.1
+updated some files, 
+
+v 1.0.0 - Initial Release
+
 This is a new Repo. Old repo was a total mess, so i ahd to clean up and make it a little more organized.
 Expect lots of pushes and updates in coming couple of weeks.
