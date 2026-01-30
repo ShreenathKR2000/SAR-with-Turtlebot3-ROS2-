@@ -6,6 +6,8 @@ Complete autonomous exploration and TD3 training package for TurtleBot3 robots i
 
 - ✅ **TD3 Deep Reinforcement Learning Training** - Train autonomous navigation policies
 - ✅ **Autonomous Exploration** - TD3-based autonomous exploration with QR code detection
+- ✅ **Multi-Robot Cooperative Exploration** - Coordinated exploration with map merging
+- ✅ **Real Robot Deployment** - Single and multi-robot real hardware support
 - ✅ **QR Code Detection** - YOLO-based detection with precise 3D positioning using LiDAR + camera
 - ✅ **SAR World Environment** - Custom Gazebo world with obstacles and QR codes
 - ✅ **Complete Standalone Package** - No external dependencies on other custom packages
@@ -54,6 +56,79 @@ ros2 launch SAR_TB3 single_robot/sar_td3_exploration.launch.py \
 
 QR code detections with 3D positions will be saved to `qr_detections/`.
 
+### 4. Multi-Robot Exploration (Simulation)
+
+Launch cooperative exploration with 2 robots:
+
+```bash
+export TURTLEBOT3_MODEL=waffle_pi
+ros2 launch SAR_TB3 multi_robot/multi_robot_exploration.launch.py
+```
+
+Or with TD3 control:
+```bash
+ros2 launch SAR_TB3 multi_robot/multi_robot_exploration.launch.py use_td3:=true
+```
+
+**Features:**
+- Decentralized SLAM (each robot maintains own map)
+- Centralized map merging (combined global map)
+- MPPI controller for better dynamic obstacle avoidance
+- Cooperative frontier exploration (avoiding duplicate work)
+
+### 5. Real Robot Deployment (Single Robot)
+
+Deploy on physical TurtleBot3:
+
+```bash
+# On the robot
+export TURTLEBOT3_MODEL=waffle  # or burger
+ros2 launch SAR_TB3 single_robot/real_robot_exploration.launch.py
+```
+
+With TD3 control:
+```bash
+ros2 launch SAR_TB3 single_robot/real_robot_exploration.launch.py \
+    use_td3:=true \
+    td3_model:=/path/to/trained_model.pt
+```
+
+**Prerequisites:**
+- TurtleBot3 powered on and connected via network
+- Robot's ROS 2 workspace sourced
+- Correct TURTLEBOT3_MODEL environment variable set
+
+### 6. Real Robot Multi-Robot Deployment
+
+**Architecture:**
+- **Robot PCs:** Run locally on each robot (SLAM + Nav2 + TD3 + Exploration)
+- **Central PC:** Runs map fusion and coordination + RViz dashboard
+
+**On Central PC:**
+```bash
+ros2 launch SAR_TB3 multi_robot/multi_robot_real.launch.py mode:=central
+```
+
+**On Robot 1:**
+```bash
+export TURTLEBOT3_MODEL=waffle
+ros2 launch SAR_TB3 multi_robot/multi_robot_real.launch.py \
+    mode:=robot \
+    robot_name:=robot1 \
+    use_td3:=true \
+    td3_model:=/path/to/model.pt
+```
+
+**On Robot 2:**
+```bash
+export TURTLEBOT3_MODEL=waffle
+ros2 launch SAR_TB3 multi_robot/multi_robot_real.launch.py \
+    mode:=robot \
+    robot_name:=robot2 \
+    use_td3:=true \
+    td3_model:=/path/to/model.pt
+```
+
 ## Package Structure
 
 ```
@@ -75,10 +150,12 @@ SAR_TB3/
 │   ├── single_robot/                 # Single robot operations
 │   │   ├── sar_world.launch.py       # SAR world only (training)
 │   │   ├── sar_td3_exploration.launch.py  # TD3 exploration + SLAM + QR
+│   │   ├── real_robot_exploration.launch.py  # Real robot autonomous exploration
 │   │   ├── full_autonomous_exploration.launch.py  # Nav2-based
 │   │   └── autonomous_exploration.launch.py       # Frontier-based
-│   └── multi_robot/                  # Multi-robot operations (future)
-│       └── README.md                 # Multi-robot plans
+│   └── multi_robot/                  # Multi-robot operations
+│       ├── multi_robot_exploration.launch.py  # Simulation with 2 robots
+│       └── multi_robot_real.launch.py         # Real hardware deployment
 │
 ├── src/SAR_TB3/                      # Python source code
 │   ├── __init__.py
@@ -94,10 +171,19 @@ SAR_TB3/
 │       ├── sar_environment.py        # Environment wrapper
 │       ├── reward.py                 # Reward function
 │       ├── settings.py               # Hyperparameters
+│       ├── map_fusion_coordinator.py # Multi-robot map fusion
+│       ├── laser_scan_adapter.py     # Scan interpolation for real robots
 │       └── ...                       # Supporting modules
 │
 ├── config/                            # Configuration files
-│   └── nav2_params.yaml              # Nav2 parameters
+│   ├── nav2_params.yaml              # Nav2 parameters (single robot)
+│   ├── nav2_params_real.yaml         # Nav2 parameters (real robot)
+│   ├── nav2_params_robot1.yaml       # Nav2 parameters (robot 1)
+│   ├── nav2_params_robot2.yaml       # Nav2 parameters (robot 2)
+│   ├── slam_params_robot1.yaml       # SLAM parameters (robot 1)
+│   ├── slam_params_robot2.yaml       # SLAM parameters (robot 2)
+│   ├── slam_params_real.yaml         # SLAM parameters (real robot)
+│   └── multirobot_rviz.rviz          # RViz config for multi-robot
 │
 ├── worlds/                            # Gazebo worlds
 │   └── sar_room_world.sdf            # Custom SAR world
@@ -235,8 +321,10 @@ qr_detector_node = Node(
 - `gazebo_ros`
 - `turtlebot3_gazebo`
 - `turtlebot3_description`
+- `turtlebot3_bringup` (for real robot)
 - `slam_toolbox`
 - `nav2_bringup` (optional, for frontier-based exploration)
+- `multirobot_map_merge` (for multi-robot exploration)
 - `tf2_ros`
 - `cv_bridge`
 - `sensor_msgs`
