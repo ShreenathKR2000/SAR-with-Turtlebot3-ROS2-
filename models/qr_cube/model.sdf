@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="qr_cube">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry>
+          <box><size>0.02 0.18 0.18</size></box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box><size>0.02 0.18 0.18</size></box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://qr_cube/materials/scripts</uri>
+            <uri>model://qr_cube/materials/textures</uri>
+            <name>QRCode/Marker</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

@@ -1,0 +1,43 @@
+# Build artifacts
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+*.egg
+
+# ROS
+*.autosave
+
+# Training outputs
+checkpoints/
+*.pt
+*.pth
+training_log.csv
+_training_figure.png
+replay_buffer.pkl
+*.pkl
+
+# QR detection outputs
+qr_detections/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

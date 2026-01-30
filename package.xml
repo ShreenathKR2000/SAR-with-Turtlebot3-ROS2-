@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>SAR_TB3</name>
+  <version>1.0.0</version>
+  <description>Complete SAR TurtleBot3 package with TD3 training, autonomous exploration, and QR detection</description>
+  <maintainer email="devnull@example.com">Autonomous Explorer</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_python</buildtool_depend>
+  <build_type>ament_python</build_type>
+
+  <depend>rclpy</depend>
+  <depend>nav_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>visualization_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav2_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>cv_bridge</depend>
+  <depend>tf2_ros</depend>
+  <depend>gazebo_ros</depend>
+  <depend>turtlebot3_gazebo</depend>
+  <depend>turtlebot3_navigation2</depend>
+  <depend>slam_toolbox</depend>
+  <exec_depend>python3-setuptools</exec_depend>
+  <exec_depend>python3-opencv</exec_depend>
+
+  <export>
+  </export>
+</package>
