@@ -15,6 +15,7 @@ setup(
         (os.path.join('share', package_name, 'launch', 'single_robot'), glob('launch/single_robot/*.launch.py')),
         (os.path.join('share', package_name, 'launch', 'multi_robot'), glob('launch/multi_robot/*.launch.py')),
         (os.path.join('share', package_name, 'config'), glob('config/*.yaml')),
+        (os.path.join('share', package_name, 'config'), glob('config/*.rviz')),
         (os.path.join('share', package_name, 'resources'), ['resources/training_log.csv']),
         (os.path.join('share', package_name, 'resource'), ['resource/qr_best.pt']),
         (os.path.join('share', package_name, 'worlds'), glob('worlds/*.sdf')),
@@ -38,6 +39,8 @@ setup(
             'td3_waypoint_controller = SAR_TB3.td3_waypoint_controller:main',
             'qr_detector = SAR_TB3.qr_detector:main',
             'train_td3_sar = SAR_TB3.drl_training.train_td3:main',
+            'map_fusion_coordinator = SAR_TB3.drl_training.map_fusion_coordinator:main',
+            'laser_scan_adapter = SAR_TB3.drl_training.laser_scan_adapter:main',
         ],
     },
 )

@@ -1,0 +1,81 @@
+# RViz Configuration for Multi-Robot Exploration
+# Handles namespaced TF frames for robot1 and robot2
+
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+  - Class: rviz_common/Views
+    Name: Views
+
+Visualization Manager:
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Reference Frame: map
+      
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+      Show Arrows: true
+      Show Axes: true
+      
+    # Robot 1 LaserScan
+    - Class: rviz_default_plugins/LaserScan
+      Name: Robot1 Scan
+      Topic: /robot1/scan
+      Color: 255; 0; 0
+      Size: 0.05
+      
+    # Robot 2 LaserScan  
+    - Class: rviz_default_plugins/LaserScan
+      Name: Robot2 Scan
+      Topic: /robot2/scan
+      Color: 0; 0; 255
+      Size: 0.05
+      
+    # Robot 1 Map
+    - Class: rviz_default_plugins/Map
+      Name: Robot1 Map
+      Topic: /robot1/map
+      Color Scheme: map
+      
+    # Robot 2 Map
+    - Class: rviz_default_plugins/Map
+      Name: Robot2 Map
+      Topic: /robot2/map
+      Color Scheme: costmap
+      
+    # Merged Map
+    - Class: rviz_default_plugins/Map
+      Name: Merged Map
+      Topic: /map
+      Color Scheme: map
+      Enabled: true
+      
+    # Robot 1 Path
+    - Class: rviz_default_plugins/Path
+      Name: Robot1 Path
+      Topic: /robot1/plan
+      Color: 255; 100; 0
+      
+    # Robot 2 Path
+    - Class: rviz_default_plugins/Path
+      Name: Robot2 Path
+      Topic: /robot2/plan
+      Color: 0; 100; 255
+      
+  Global Options:
+    Fixed Frame: map
+    Frame Rate: 30
+
+  Views:
+    Current:
+      Class: rviz_default_plugins/TopDownOrtho
+      Name: TopDownOrtho
+      Scale: 10
+      Target Frame: map
+      X: 0
+      Y: 0
