@@ -18,7 +18,7 @@ Complete autonomous exploration and TD3 training package for TurtleBot3 robots i
 
 ```bash
 cd /path/to/your/ros2_ws/src
-git clone <your-repo-url> SAR_TB3
+git clone https://github.com/ShreenathKR2000/SAR-with-Turtlebot3-ROS2- SAR_TB3
 cd ..
 colcon build --packages-select SAR_TB3
 source install/setup.bash
