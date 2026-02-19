@@ -6,11 +6,10 @@ Complete autonomous exploration and TD3 training package for TurtleBot3 robots i
 
 - ✅ **TD3 Deep Reinforcement Learning Training** - Train autonomous navigation policies
 - ✅ **Autonomous Exploration** - TD3-based autonomous exploration with QR code detection
-- ✅ **Multi-Robot Cooperative Exploration** - Coordinated exploration with map merging
-- ✅ **Real Robot Deployment** - Single and multi-robot real hardware support
+- ✅ **Multi-Robot Cooperative Exploration (in works)** - Coordinated exploration with map merging
+- ✅ **Real Robot Deployment Code** - Single and multi-robot real hardware support
 - ✅ **QR Code Detection** - YOLO-based detection with precise 3D positioning using LiDAR + camera
 - ✅ **SAR World Environment** - Custom Gazebo world with obstacles and QR codes
-- ✅ **Complete Standalone Package** - No external dependencies on other custom packages
 
 ## Quick Start
 
