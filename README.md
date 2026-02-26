@@ -1,15 +1,20 @@
+## Important!
+
+Doing this project has helped me understand the actual full scope of it. So I will be breaking it down to smaller elements first and improving them. So as part of that, I will be having a new repo focusing on Multi Robot *(Swarm)* Exploration using Turtlebots. I will be focusing on that first and then try to integrate it here or change the whole thing and start from fresh. I will also be using some other algorithm other than frontier based exploration.
+
+
 # SAR_TB3: Search and Rescue TurtleBot3 Package
 
 Complete autonomous exploration and TD3 training package for TurtleBot3 robots in SAR (Search and Rescue) environments.
 
 ## Features
 
-- ✅ **TD3 Deep Reinforcement Learning Training** - Train autonomous navigation policies
-- ✅ **Autonomous Exploration** - TD3-based autonomous exploration with QR code detection
-- ✅ **Multi-Robot Cooperative Exploration (in works)** - Coordinated exploration with map merging
-- ✅ **Real Robot Deployment Code** - Single and multi-robot real hardware support
-- ✅ **QR Code Detection** - YOLO-based detection with precise 3D positioning using LiDAR + camera
-- ✅ **SAR World Environment** - Custom Gazebo world with obstacles and QR codes
+- **TD3 Deep Reinforcement Learning Training** - Train autonomous navigation policies
+- **Autonomous Exploration** - TD3-based autonomous exploration with QR code detection
+- **Multi-Robot Cooperative Exploration (in works)** - Coordinated exploration with map merging
+- **Real Robot Deployment Code** - Single and multi-robot real hardware support
+- **QR Code Detection** - YOLO-based detection with precise 3D positioning using LiDAR + camera
+- **SAR World Environment** - Custom Gazebo world with obstacles and QR codes
 
 ## Quick Start
 
